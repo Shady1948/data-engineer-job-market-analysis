@@ -100,7 +100,7 @@ To answer these, I queried a **Star Schema Data Warehouse** hosted on **MotherDu
   My initial attempt to rank overall skill value used a naive linear product (`median_salary * demand_count`). This created an extreme volume bias: foundational skills like SQL and Python (~1,100 salaried postings) completely drowned out high-value specialized tools like Terraform (193 postings), effectively turning the ranking into another raw demand list. To normalize the skewed distribution, I introduced a natural log transformation:
 
 $$
-\text{optimal\_score} = \text{ROUND}\left(\frac{\text{MEDIAN}(\text{salary\_year\_avg}) \times \ln(\text{COUNT}(*))}{1,000,000}, 2\right)
+\text{optimal score} = \text{ROUND}\left(\frac{\text{MEDIAN}(\text{salary year avg}) \times \ln(\text{COUNT}(*))}{1,000,000}, 2\right)
 $$
 
   This compressed the volume range (e.g., $1,133 \rightarrow \sim7.0$ vs. $193 \rightarrow \sim5.0$), allowing compensation to meaningfully drive the rank while preserving statistical weight for volume.
